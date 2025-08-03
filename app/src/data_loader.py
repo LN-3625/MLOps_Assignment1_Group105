@@ -1,25 +1,25 @@
-from sklearn.datasets import fetch_california_housing
 import pandas as pd
 import os
+from sklearn.datasets import fetch_california_housing
 
-# Load and save California Housing dataset
+RAW_DATA_PATH = "app/data/raw/housing.csv"
+
+# Save the dataset to CSV
 def save_housing_data_to_csv():
     data = fetch_california_housing(as_frame=True)
     df = data.frame
 
-    print("Current working directory:", os.getcwd())
-    # Ensure the directory exists
-    os.makedirs("app/data/raw", exist_ok=True)
+    os.makedirs(os.path.dirname(RAW_DATA_PATH), exist_ok=True)
+    df.to_csv(RAW_DATA_PATH, index=False)
+    print(f"✅ California housing dataset saved to {RAW_DATA_PATH}")
 
-    # Save to CSV
-    df.to_csv("app/data/raw/housing.csv", index=False)
-    print("California housing dataset saved to data/raw/housing.csv")
-
-# Load dataset from sklearn (used for training in memory)
+# Load dataset from CSV (used for training)
 def load_housing_data():
-    data = fetch_california_housing(as_frame=True)
-    df = data.frame
-    return df, data.target
+    if not os.path.exists(RAW_DATA_PATH):
+        raise FileNotFoundError(f"❌ Dataset not found at {RAW_DATA_PATH}. Run save_housing_data_to_csv() first.")
+    df = pd.read_csv(RAW_DATA_PATH)
+    return df.drop("MedHouseVal", axis=1), df["MedHouseVal"]
 
+# Optional script usage
 if __name__ == "__main__":
     save_housing_data_to_csv()

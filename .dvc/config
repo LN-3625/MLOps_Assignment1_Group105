@@ -1,0 +1,4 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = C:\Users\laksh\OneDrive\Desktop\Assignments\MLOps\DVC_localStorage

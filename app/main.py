@@ -20,7 +20,7 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS predictions (
         timestamp TEXT,
         input TEXT,
-        prediction REAL
+        MedHouseVal_prediction REAL
     )
 ''')
 conn.commit()
@@ -60,14 +60,14 @@ def predict(input_data: HousingInput):
     prediction = model.predict(df)
 
     # Logging to file
-    log = f"{datetime.now()} | Input: {df.to_dict(orient='records')} | Prediction: {prediction[0]}"
+    log = f"{datetime.now()} | Input: {df.to_dict(orient='records')} | MedHouseVal_Prediction: {prediction[0]}"
     logging.info(log)
 
     # Insert into SQLite
     cursor.execute(
-        "INSERT INTO predictions (timestamp, input, prediction) VALUES (?, ?, ?)",
+        "INSERT INTO predictions (timestamp, input, MedHouseVal_prediction) VALUES (?, ?, ?)",
         (datetime.now().isoformat(), str(df.to_dict()), float(prediction[0]))
     )
     conn.commit()
 
-    return {"prediction": prediction[0]}
+    return {"MedHouseVal prediction": prediction[0]}
