@@ -1,8 +1,11 @@
 @echo off
-docker rm -f housing-api-container
-docker rmi housing-api
-docker build -t housing-api .
-docker run -d --name housing-api-container -p 8000:8000 ^
-  -v "%cd%/app/mlruns:/app/mlruns" ^
-  -e MLFLOW_TRACKING_URI="file:app/mlruns" ^
-  housing-api
+SET IMAGE_NAME=narayana3625/housing-api:latest
+
+echo Building Docker image...
+docker build -t %IMAGE_NAME% .
+
+echo Pushing to Docker Hub...
+docker push %IMAGE_NAME%
+
+echo Starting services with Docker Compose...
+docker-compose up --build

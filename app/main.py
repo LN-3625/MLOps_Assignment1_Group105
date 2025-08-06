@@ -17,7 +17,7 @@ logging.basicConfig(filename="logs.txt", level=logging.INFO)
 conn = sqlite3.connect("requests.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS predictions (
+    CREATE TABLE IF NOT EXISTS MedHousePrediction (
         timestamp TEXT,
         input TEXT,
         MedHouseVal_prediction REAL
@@ -65,7 +65,7 @@ def predict(input_data: HousingInput):
 
     # Insert into SQLite
     cursor.execute(
-        "INSERT INTO predictions (timestamp, input, MedHouseVal_prediction) VALUES (?, ?, ?)",
+        "INSERT INTO MedHousePrediction (timestamp, input, MedHouseVal_prediction) VALUES (?, ?, ?)",
         (datetime.now().isoformat(), str(df.to_dict()), float(prediction[0]))
     )
     conn.commit()

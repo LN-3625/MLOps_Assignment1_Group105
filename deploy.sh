@@ -1,16 +1,11 @@
 #!/bin/bash
+IMAGE_NAME=narayana3625/housing-api:latest
 
-# Stop and remove existing container if it exists
-docker rm -f housing-api-container 2>/dev/null
+echo "🔧 Building Docker image..."
+docker build -t $IMAGE_NAME .
 
-# Remove old image if it exists
-docker rmi housing-api 2>/dev/null
+echo "📤 Pushing to Docker Hub..."
+docker push $IMAGE_NAME
 
-# Build new Docker image
-docker build -t housing-api .
-
-# Run the container with volume mount for mlruns
-docker run -d --name housing-api-container -p 8000:8000 \
-  -v "$(pwd)/app/mlruns:/app/mlruns" \
-  -e MLFLOW_TRACKING_URI="file:/app/mlruns" \
-  housing-api
+echo "🚀 Starting services with Docker Compose..."
+docker-compose up --build
