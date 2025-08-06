@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/laksh/OneDrive/Desktop/Assignments/MLOps/MLOps_Assignment1_Group105/app/mlruns/0/7fcdd3ae8d514d049bc3fae220ee2dc5/artifacts
+end_time: 1754252653671
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7fcdd3ae8d514d049bc3fae220ee2dc5
+run_name: LinearRegression
+run_uuid: 7fcdd3ae8d514d049bc3fae220ee2dc5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754252646867
+status: 3
+tags: []
+user_id: laksh

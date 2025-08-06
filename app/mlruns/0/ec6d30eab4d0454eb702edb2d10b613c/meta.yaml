@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/laksh/OneDrive/Desktop/Assignments/MLOps/MLOps_Assignment1_Group105/app/mlruns/0/ec6d30eab4d0454eb702edb2d10b613c/artifacts
+end_time: 1754253549132
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ec6d30eab4d0454eb702edb2d10b613c
+run_name: DecisionTree
+run_uuid: ec6d30eab4d0454eb702edb2d10b613c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754253544155
+status: 3
+tags: []
+user_id: laksh

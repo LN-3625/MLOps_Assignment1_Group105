@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1754252927667
+current_stage: Staging
+description: null
+last_updated_timestamp: 1754252927693
+name: CaliforniaHousingBestModel
+run_id: 7b5e449b85ad4808b6c2178df15a94ee
+run_link: null
+source: runs:/7b5e449b85ad4808b6c2178df15a94ee/model
+status: READY
+status_message: null
+storage_location: runs:/7b5e449b85ad4808b6c2178df15a94ee/model
+user_id: null
+version: 2
