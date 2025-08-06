@@ -1,7 +1,9 @@
 version: "3"
 services:
   app:
-    image: narayana3625/housing-api:latest # Replace with your Docker Hub username/image
+    image: narayana3625/housing-api:latest
+
+    pull_policy: always
     ports:
       - "8000:8000"
     volumes:
