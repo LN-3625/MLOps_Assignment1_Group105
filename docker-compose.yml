@@ -7,5 +7,6 @@ services:
     volumes:
       - ./requests.db:/app/requests.db
       - ./app/mlruns:/app/mlruns
+      - ./logs.txt:/app/logs.txt
     environment:
       - MLFLOW_TRACKING_URI=file:/app/mlruns
