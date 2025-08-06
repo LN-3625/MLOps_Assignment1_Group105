@@ -11,10 +11,10 @@ from mlflow.tracking import MlflowClient
 app = FastAPI()
 
 # Setup logging
-logging.basicConfig(filename="/app/logs.txt", level=logging.INFO)
+logging.basicConfig(filename="logs.txt", level=logging.INFO)
 
 # Setup SQLite connection
-conn = sqlite3.connect("/app/requests.db", check_same_thread=False)
+conn = sqlite3.connect("requests.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS MedHousePrediction (
