@@ -11,6 +11,9 @@ import pandas as pd
 
 mlflow.set_tracking_uri("file:app/mlruns")
 
+experiment_name = "CaliforniaHousingBestModel"
+mlflow.set_experiment(experiment_name)
+
 # Load and preprocess data
 X, y = load_housing_data()
 X_train, X_test, y_train, y_test, feature_names = preprocess_data(X, y)
