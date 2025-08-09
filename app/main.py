@@ -6,12 +6,16 @@ import logging
 from datetime import datetime
 import sqlite3
 from mlflow.tracking import MlflowClient
-
+from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_client import Counter, Histogram
+import time
+import os, logging
 # Initialize FastAPI app
 app = FastAPI()
 
 # Setup logging
-logging.basicConfig(filename="logs.txt", level=logging.INFO)
+os.makedirs("/app/logs", exist_ok=True)
+logging.basicConfig(filename="/app/logs/app.log", level=logging.INFO)
 
 # Setup SQLite connection
 conn = sqlite3.connect("requests.db", check_same_thread=False)
@@ -24,6 +28,21 @@ cursor.execute('''
     )
 ''')
 conn.commit()
+
+PREDICTIONS_TOTAL = Counter(
+    "predictions_total",
+    "Number of /predict calls",
+    ["status"]  # "ok" or "error"
+)
+PREDICTION_LATENCY = Histogram(
+    "prediction_latency_seconds",
+    "Latency of /predict endpoint",
+    buckets=(0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 1, 2, 5)
+)
+DB_WRITES_TOTAL = Counter(
+    "db_writes_total",
+    "Number of rows inserted into SQLite for predictions"
+)
 
 # Load the latest model from MLflow registry
 mlflow.set_tracking_uri("file:/app/mlruns")

@@ -3,3 +3,5 @@ uvicorn
 mlflow
 pandas
 scikit-learn
+prometheus-fastapi-instrumentator==6.1.0
+prometheus-client==0.20.0

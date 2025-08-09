@@ -1,0 +1,2 @@
+INFO:root:2025-08-09 19:38:38.315114 | Input: [{'MedInc': 8.3252, 'HouseAge': 41.0, 'AveRooms': 6.984126984126984, 'AveBedrms': 1.0238095238095237, 'Population': 322.0, 'AveOccup': 2.5555555555555554, 'Latitude': 37.88, 'Longitude': 122.23}] | MedHouseVal_Prediction: 1.375
+INFO:root:2025-08-09 19:38:51.474133 | Input: [{'MedInc': 8.3252, 'HouseAge': 41.0, 'AveRooms': 6.984126984126984, 'AveBedrms': 1.0238095238095237, 'Population': 322.0, 'AveOccup': 2.5555555555555554, 'Latitude': 37.88, 'Longitude': -122.23}] | MedHouseVal_Prediction: 1.375
