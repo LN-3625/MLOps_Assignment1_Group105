@@ -149,7 +149,7 @@ sqlite3 requests.db "SELECT * FROM MedHousePrediction;"
 - Example queries:
 
 ```promql
-up{job="fastapi"}
+up{job="housing_api"}
 predictions_total
 db_writes_total
 rate(predictions_total[1m])
@@ -161,11 +161,13 @@ rate(predictions_total[1m])
 
 - Go to **`http://localhost:3000`** (Login: `admin/admin`)
 - Add Prometheus as a data source (`http://prometheus:9090`)
-- Create panels for:
+- Import grafana_fastapi_dashboard.json from ./grafana_fastapi_dashboard.json
+- after adding the panels for:
+  - **Prediction Latency**
   - **Total Predictions**
-  - **95th Percentile Latency**
-  - **Database Writes**
-  - **Error Rate**
+  - **DB Writes**
+  - **Requests Per Second**
+    should be visible
 
 ---
 
