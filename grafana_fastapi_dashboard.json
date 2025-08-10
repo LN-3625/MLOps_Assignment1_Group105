@@ -1,0 +1,92 @@
+{
+  "id": null,
+  "title": "FastAPI Monitoring Dashboard",
+  "tags": [
+    "fastapi",
+    "prometheus",
+    "mlops"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Prediction Latency",
+      "targets": [
+        {
+          "expr": "prediction_latency_seconds_bucket",
+          "legendFormat": "{{le}} seconds",
+          "refId": "A"
+        }
+      ],
+      "id": 1,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "lines": true
+    },
+    {
+      "type": "stat",
+      "title": "Total Predictions",
+      "targets": [
+        {
+          "expr": "sum(predictions_total)",
+          "refId": "A"
+        }
+      ],
+      "id": 2,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "horizontal",
+        "textMode": "value"
+      }
+    },
+    {
+      "type": "graph",
+      "title": "DB Writes",
+      "targets": [
+        {
+          "expr": "db_writes_total",
+          "legendFormat": "DB Writes",
+          "refId": "A"
+        }
+      ],
+      "id": 3,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "lines": true
+    },
+    {
+      "type": "graph",
+      "title": "Requests Per Second",
+      "targets": [
+        {
+          "expr": "rate(predictions_total[1m])",
+          "legendFormat": "req/sec",
+          "refId": "A"
+        }
+      ],
+      "id": 4,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "lines": true
+    }
+  ]
+}
